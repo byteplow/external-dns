@@ -292,7 +292,10 @@ func BuildWithConfig(ctx context.Context, source string, p ClientGenerator, cfg 
 			return nil, err
 		}
 		return NewKongTCPIngressSource(ctx, dynamicClient, kubernetesClient, cfg.Namespace, cfg.AnnotationFilter)
+	case "docker-container-label":
+		return NewDockerContainerLabelSource()
 	}
+
 	return nil, ErrSourceNotFound
 }
 
